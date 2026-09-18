@@ -1,8 +1,4 @@
 # netlify.toml (fullstack, at the workspace root)
-[build]
-  command = "pnpm build && pnpm --filter ./server exec kick build:netlify"
-  publish = "web/dist"
-
 [[redirects]]
   from = "/*"
   to = "/index.html"
