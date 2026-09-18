@@ -1,7 +1,8 @@
 import { defineConfig } from '@forinda/kickjs-cli'
+import { deployPlugin } from './kick-deploy'
 
 export default defineConfig({
-  pattern: 'minimal',
+  pattern: 'rest',
   // The HTTP engine this app boots on (matches `bootstrap({ runtime })` in
   // src/index.ts). Dep-aware commands read it: `kick add upload` installs the
   // engine's multipart driver, `kick doctor` checks the engine peers, and
@@ -13,20 +14,11 @@ export default defineConfig({
   modules: {
     dir: 'src/modules',
     repo: 'inmemory',
-    pluralize: true,
+    pluralize: false,
   },
 
-  // `kick typegen` populates `.kickjs/types/` so `Ctx<KickRoutes.X['method']>`
-  // resolves to fully-typed params/body/query. Auto-runs on `kick dev`.
-  // `'kickjs-schema'` routes inference through `InferSchemaOutput` so the
-  // typegen works for any wrapped schema (Zod / Valibot / Yup). Switch
-  // to `'zod'` if you ship Zod schemas without `fromZod()` wrapping, or
-  // set `schemaValidator: false` to skip schema-driven body typing.
   typegen: {
     schemaValidator: 'kickjs-schema',
-    // web/ reads this map from the ambient KickClientApi namespace. Producing
-    // it builds a TypeScript program over the server, so it stays off unless a
-    // project actually consumes it.
     client: true,
   },
 
@@ -58,4 +50,5 @@ export default defineConfig({
       aliases: ['verify'],
     },
   ],
+  plugins:[deployPlugin({ staticDir: '../web/dist', siteRoot: '..' })]
 })

@@ -6,6 +6,7 @@
     "dev": "kick dev",
     "build": "kick build",
     "start": "kick start",
+    "build:prod": "kick build:netlify",
     "test": "vitest run"
   },
   "dependencies": {

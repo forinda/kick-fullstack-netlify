@@ -1,0 +1,9 @@
+# netlify.toml (fullstack, at the workspace root)
+[build]
+  command = "pnpm build:prod"
+  publish = "web/dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

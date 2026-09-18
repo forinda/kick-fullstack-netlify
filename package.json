@@ -9,6 +9,7 @@
     "dev:server": "pnpm --filter ./server dev",
     "dev:web": "pnpm --filter ./web dev",
     "build": "pnpm -r run build",
+    "build:prod": "pnpm -r run build && pnpm --filter ./server run build:prod",
     "typecheck": "kick typecheck --cwd server && kick typecheck --cwd web"
   },
   "devDependencies": {
