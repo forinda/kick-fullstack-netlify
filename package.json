@@ -1,0 +1,21 @@
+{
+  "name": "kick-fullstack",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --parallel -r run dev",
+    "start": "pnpm --filter ./server run start",
+    "dev:server": "pnpm --filter ./server dev",
+    "dev:web": "pnpm --filter ./web dev",
+    "build": "pnpm -r run build",
+    "typecheck": "kick typecheck --cwd server && kick typecheck --cwd web"
+  },
+  "devDependencies": {
+    "@forinda/kickjs-cli": "^8.2.4"
+  },
+  "workspaces": [
+    "server",
+    "web"
+  ]
+}
