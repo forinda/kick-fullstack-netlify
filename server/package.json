@@ -6,7 +6,8 @@
     "dev": "kick dev",
     "build": "kick build",
     "start": "kick start",
-    "build:prod": "kick build:netlify",
+    "b:netlify": "kick build:netlify",
+    "b:vercel": "kick build:vercel",
     "test": "vitest run"
   },
   "dependencies": {
