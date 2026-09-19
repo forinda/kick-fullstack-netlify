@@ -124,7 +124,6 @@ export default (request) => handler.fetch(request)
 
 export const config = {
   path: '${opts.apiPath}/*',
-  preferStatic: true,
 }
 `,
           );
