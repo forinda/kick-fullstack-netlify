@@ -50,5 +50,5 @@ export default defineConfig({
       aliases: ['verify'],
     },
   ],
-  plugins: [deployPlugin({ staticDir: '../web/dist', siteRoot: '..', netlifyRoot: '../web' })]
+  plugins: [deployPlugin({ staticDir: '../web/dist', siteRoot: '..' })]
 })
