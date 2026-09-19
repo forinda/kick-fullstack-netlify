@@ -18,6 +18,12 @@ export interface DeployPluginOptions {
    * `.netlify/` and `.vercel/` are written. Fullstack: `..` (the workspace root).
    */
   siteRoot?: string;
+  /**
+   * Where `.netlify/` goes, if not `siteRoot`. Netlify treats a pnpm workspace
+   * as a monorepo and reads functions from the site's package directory
+   * (fullstack: `../web`), not from the repo root.
+   */
+  netlifyRoot?: string;
   /** URL prefix routed to the function. Default `/api`. */
   apiPath?: string;
   /**
@@ -103,7 +109,10 @@ export const deployPlugin = (options: DeployPluginOptions = {}) =>
         .description("Bundle the API and write the Netlify function")
         .action(async () => {
           const server = await bundle();
-          const functions = resolve(siteRoot, ".netlify/v1/functions");
+          const functions = resolve(
+            opts.netlifyRoot ? resolve(root, opts.netlifyRoot) : siteRoot,
+            ".netlify/v1/functions",
+          );
           mkdirSync(functions, { recursive: true });
           // The function imports the bundle; Netlify packages what it imports.
           const from = relative(functions, server).split(sep).join("/");
